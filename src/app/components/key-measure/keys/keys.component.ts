@@ -60,7 +60,6 @@ export class KeysComponent implements OnInit {
       this.dataModified.emit(this.keysDataSource.data.map(item => item.row))
     });
   }
-
   initializeData(data: KeysModel[]): { row: KeysModel, errors: Partial<Record<keyof KeysModel, boolean>>, isEditMode: boolean }[] {
    return data.map(item => (
       {

@@ -47,6 +47,11 @@ export class KeyMeasureComponent implements AfterViewInit {
       const responseMeasures = await this.measureComp.validateAndSave();
       if(responseKeys && responseKeys.length > 0 && responseMeasures && responseMeasures.length > 0) {
         console.log('Keys data received in parent:', responseKeys, responseMeasures);
+        let storageFrom = localStorage.getItem('RECON_FORM_DATA');
+        const formData =  storageFrom ? JSON.parse(storageFrom) : null;
+        formData.measures_data = responseMeasures;
+        formData.keys_data = responseKeys;
+        localStorage.setItem("RECON_FORM_DATA", JSON.stringify(formData))
         this.router.navigate(['./recon'])
       }
     } else {

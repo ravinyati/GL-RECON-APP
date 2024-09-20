@@ -62,6 +62,10 @@ export class ReconListComponent implements OnInit, AfterViewInit {
     this.sort.sortChange.subscribe(() => this.getAllReacon());
   }
   getAllReacon() {
+
+    const data = localStorage.getItem("RECON_FORM_DATA");
+    const formData = data ? JSON.parse(data) : null;
+    console.log(formData)
     const params = {
       page: this.paginator ? this.paginator.pageIndex + 1 : 1,
       page_size: this.paginator ? this.paginator.pageSize : this.ITEM_PER_PAGE,
@@ -69,12 +73,14 @@ export class ReconListComponent implements OnInit, AfterViewInit {
       sort_order: this.sort ? this.sort.direction : 'asc',
       search_query: this.searchQuery,
     };
-
+     
     this._apiService.getAllRecon().subscribe((data: ReconData[]) => {
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+
+
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;

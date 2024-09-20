@@ -56,6 +56,7 @@ export class ReconCreateComponent {
   }
   ngOnInit():void {
     this.loadData();
+    
   }
   loadData() {
     this._dataService.getFrequencies().subscribe(data => this.frequencies = data);
@@ -118,6 +119,12 @@ export class ReconCreateComponent {
   nextRecon() {
     if (this.form.valid) {
       console.log(this.form.value);
+      const formdata ={
+        "form_data": this.form.value,
+        "keys_data":[],
+        "measures_data":[]
+      }
+      localStorage.setItem("RECON_FORM_DATA", JSON.stringify(formdata))
       this.router.navigate(['./key-measure'])
     }
   }

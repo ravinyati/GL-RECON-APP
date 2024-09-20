@@ -8,7 +8,7 @@ import { ReconListComponent } from './components/recon/recon-list/recon-list.com
 import { ReconCreateComponent } from './components/recon/recon-create/recon-create.component';
 import { MaterialModule } from './shared/material.module';
 import { BreadcrumbComponent } from './components/breadcrumb/breadcrumb.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Import this module
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +18,8 @@ import { KeysComponent } from './components/key-measure/keys/keys.component';
 import { MessageActionDialogComponent } from './components/message-action-dialog/message-action-dialog.component';
 import { DefaultReconListComponent } from './components/recon/default-recon-list/default-recon-list.component';
 import { ReconEditComponent } from './components/recon/recon-edit/recon-edit.component';
+import { HttpErrorInterceptor } from './shared/http-error.interceptor';
+import { LoggerService } from './shared/logger.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,10 @@ import { ReconEditComponent } from './components/recon/recon-edit/recon-edit.com
     ReactiveFormsModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
+    LoggerService
+  ],
   schemas:[NO_ERRORS_SCHEMA],
 
   bootstrap: [AppComponent]
