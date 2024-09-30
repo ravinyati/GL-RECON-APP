@@ -1,4 +1,4 @@
-import { NgModule , NO_ERRORS_SCHEMA} from '@angular/core';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
@@ -33,8 +33,7 @@ import { LoggerService } from './shared/logger.service';
     KeysComponent,
     MessageActionDialogComponent,
     DefaultReconListComponent,
-    ReconEditComponent
-    
+    ReconEditComponent,
   ],
   imports: [
     CommonModule,
@@ -44,14 +43,14 @@ import { LoggerService } from './shared/logger.service';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true },
-    LoggerService
+    LoggerService,
   ],
-  schemas:[NO_ERRORS_SCHEMA],
+  schemas: [NO_ERRORS_SCHEMA],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
