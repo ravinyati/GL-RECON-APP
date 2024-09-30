@@ -1,0 +1,13 @@
+version: "3"
+services:
+  angular-app:
+    build: .
+    ports:
+      - "80:80"
+    depends_on:
+      - backend-api
+
+  backend-api:
+    image: my-backend-api
+    ports:
+      - "8080:8080"
